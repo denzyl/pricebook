@@ -33,3 +33,9 @@ module Pricebook
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
+
+module Testing
+class Application < Rails::Application
+ config.generators.test_framework false
+end
+end

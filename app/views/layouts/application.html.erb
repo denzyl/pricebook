@@ -7,8 +7,44 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <div class="site-wrapper">
 
-<%= yield %>
+      <div class="site-wrapper-inner">
 
-</body>
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">Grocerize</h3>
+              <nav class="nav nav-masthead">
+                <% if current_user %>
+                  <%= current_user.name %> &nbsp;&nbsp;
+                  <%= link_to "Logout", '/logout', class: "nav-link" %>
+                <% else %>
+                  <%= link_to "Home", 'home', class: "nav-link active" %> &nbsp;&nbsp;
+                  <%= link_to "Login", '/login', class:"nav-link" %> &nbsp;&nbsp;
+                  <%= link_to "Signup", '/signup', class:"nav-link" %>
+                <% end %>
+              </nav>
+            </div>
+          </div>
+
+          <div class="inner cover">
+          <%= yield %>
+          </div>
+
+          <!-- <div class="mastfoot">
+            <div class="inner">
+              <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+            </div>
+          </div> -->
+
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery first, then Bootstrap JS. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
+  </body>
 </html>
