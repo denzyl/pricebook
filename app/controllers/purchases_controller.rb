@@ -2,6 +2,10 @@ class PurchasesController < ApplicationController
 
   before_filter :authorize
 
+  def index
+    @purchases = Purchase.all.order("created_at DESC")
+  end
+
   def new
     @purchase = Purchase.new
   end
@@ -21,6 +25,7 @@ class PurchasesController < ApplicationController
   end
 
   def show
+
   end
 
   private

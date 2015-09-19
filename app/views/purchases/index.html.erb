@@ -1,1 +1,13 @@
-<p>Hello world</p>
+<div class="row">
+  <div class="span4">
+    <a href="purchases/new" class="btn btn-primary">Enter a purchase</a>
+  </div>
+</div>
+<hr>
+<h3>All purchases:</h3>
+
+<% @purchases.each do |purchase| %>
+  <p><%= purchase.date %> at <%= purchase.place %> for <%= purchase.total_amount %>:  <%= link_to "Show purchase", purchase %></p>
+  <hr>
+
+<% end %>

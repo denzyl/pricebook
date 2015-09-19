@@ -1,0 +1,17 @@
+<%= form_for(@purchase, :html => {:class => 'form-inline'}) do |f| %>
+<div class="row">
+  <div class="form-group col-sm-4">
+    <%= f.label :date, "Date", class: 'control-label' %>
+    <%= f.date_field :date, value: Date.today.to_s(:db), class: 'form-control' %>
+  </div>
+  <div class="form-group col-sm-4">
+    <%= f.label :place, "Place", class: 'control-label' %>
+    <%= f.text_field :place, class: 'form-control' %>
+  </div>
+  <div class="form-group col-sm-4">
+   <%= f.label :total_amount, "Total Cost", class: 'control-label' %>
+   <%= f.text_field :total_amount, class: 'form-control' %>
+ </div>
+</div>
+ <%= f.submit @purchase.new_record? ? 'Create' : 'Update', :class => 'btn btn-primary' %>
+<% end %>
