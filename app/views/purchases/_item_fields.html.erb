@@ -1,0 +1,12 @@
+<tr class="item_table_row">
+  <td class="row_index"><%= f.index == 0 ? 1 : f.index %></td>
+  <td><%= f.text_field :name, class: 'form-control', style: 'width:100%;' %></td>
+  <td>$ <%= f.number_field :cost, class: 'form-control cost', :step => 0.01, style: 'width:83%;' %></td>
+  <td><%= f.number_field :quantity, class: 'form-control quantity', :step => 0.01, style: 'width:85%;'  %></td>
+  <td>$ <%= f.number_field :total_cost, class: 'form-control total_cost', :step => 0.01, style: 'width:83%;' %></td>
+  <td><%= f.text_field :notes, class: 'form-control', style: 'width:100%;'  %></td>
+  <%= f.fields_for :categories do |cat| %>
+  <td><%= f.text_field :name, class: 'form-control', style: 'width:50%;'  %></td>
+  <% end %>
+
+</tr>

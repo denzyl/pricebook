@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :users
   resources :purchases
   resources :items
+  resources :categories
 
   get '/home' => 'home#index'
   get '/purchases' => 'purchases#index'

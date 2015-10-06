@@ -2,7 +2,7 @@
 <div class="row">
   <div class="form-group col-sm-4">
     <%= f.label :date, "Date", class: 'control-label' %>
-    <%= f.date_field :date, value: Date.today.to_s(:db), class: 'form-control' %>
+    <%= f.date_field :date, value: Date.today.to_s(:db), class: 'form-control', style: "line-height: 1.375rem;" %>
   </div>
   <div class="form-group col-sm-4">
     <%= f.label :place, "Place", class: 'control-label' %>
@@ -10,8 +10,38 @@
   </div>
   <div class="form-group col-sm-4">
    <%= f.label :total_amount, "Total Cost", class: 'control-label' %>
-   <%= f.text_field :total_amount, class: 'form-control' %>
+   <%= f.number_field :total_amount, class: 'form-control', :step => 0.01 %>
  </div>
 </div>
- <%= f.submit @purchase.new_record? ? 'Create' : 'Update', :class => 'btn btn-primary' %>
+<br>
+<div class="row">
+  <div class="col-md-12 column">
+  <table class="table table-condensed table-striped" style="width:auto;" id="purchase_items">
+      <thead>
+        <tr>
+          <th style="width:1%;">#</th>
+          <th style="width:10%;">Name</th>
+          <th style="width:7%;">Cost</th>
+          <th style="width:7%;">Quantity</th>
+          <th style="width:7%;">Total Cost</th>
+          <th style="width:10%;">Notes</th>
+          <th style="width:20%;">Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= f.fields_for :items do |ff| %>
+        <%= render 'item_fields', f: ff %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <%= link_to_add_fields "Add Item", f, :items %>
+    <%= f.submit @purchase.new_record? ? 'Create' : 'Update', :class => 'btn btn-primary' %>
+
+  </div>
+</div>
+<br/>
 <% end %>

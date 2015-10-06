@@ -1,4 +1,5 @@
 class PurchasesController < ApplicationController
+  before_action :set_purchase, only: [:show, :edit, :update]
 
   before_filter :authorize
 
@@ -8,6 +9,7 @@ class PurchasesController < ApplicationController
 
   def new
     @purchase = Purchase.new
+    1.times { @purchase.items.build }
   end
 
   def create
@@ -24,14 +26,22 @@ class PurchasesController < ApplicationController
   def edit
   end
 
-  def show
+  def update
+    if @purchase.update(purchase_params)
+      redirect_to @purchase
+    else
+      render 'edit'
+    end
+  end
 
+  def show
+    @purchase = Purchase.find(params[:id])
   end
 
   private
 
   def purchase_params
-    params.require(:purchase).permit(:date, :place, :total_amount)
+    params.require(:purchase).permit!
   end
 
   def set_purchase

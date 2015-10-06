@@ -1,0 +1,36 @@
+<h4><%= @purchase.date.strftime("%A %b #{@purchase.date.day}") %> at <%= @purchase.place %> for <%= number_to_currency(@purchase.total_amount) %></h4>
+<div class="row">
+  <div class="col-sm-12">
+<table class="table table-condensed table-striped" id="purchase_items">
+  <thead>
+
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Cost</th>
+      <th>Quantity</th>
+      <th>Total Cost</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+<% @purchase.items.each do |item| %>
+  <tr>
+    <td><%= 1 %></td>
+    <td><%= item.name %></td>
+    <td><%= number_to_currency(item.cost) %></td>
+    <td><%= item.quantity %></td>
+    <td><%= number_to_currency(item.total_cost) %></td>
+    <td><%= item.notes %></td>
+  </tr>
+<% end %>
+
+  </tbody>
+</table>
+</div>
+</div>
+
+
+<%= link_to 'Edit', edit_purchase_path(@purchase) %> | <%= link_to 'Back to Purchases', purchases_path %>
